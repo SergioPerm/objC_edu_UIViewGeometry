@@ -21,8 +21,13 @@
     UIView* view1 = [[UIView alloc] initWithFrame:CGRectMake(50, 50, 150, 50)];
     view1.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.7];
     
-    UIView* view2= [[UIView alloc] initWithFrame:CGRectMake(180, 90, 70, 30)];
+    //view1.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight |
+        //UIViewAutoresizingFlexibleLeftMargin;
+    
+    UIView* view2= [[UIView alloc] initWithFrame:CGRectMake(180, 90, 70, 180)];
     view2.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.5];
+    
+    view2.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin;
     
     [self.view addSubview:view1];
     [self.view addSubview:view2];
@@ -32,6 +37,17 @@
     
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    
+    NSLog(@"rotate done");
+    
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    
+    NSLog(@"rotate done");
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
