@@ -10,6 +10,8 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) UIView* testView;
+
 @end
 
 @implementation ViewController
@@ -32,6 +34,8 @@
     [self.view addSubview:view1];
     [self.view addSubview:view2];
     
+    self.testView = view2;
+    
     [self.view bringSubviewToFront:view1]; //поставили view1 выше view2
     //view.superview.backgroundColor = [UIColor blueColor]; у каждой вью есть родительский вью
     
@@ -39,7 +43,28 @@
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     
-    NSLog(@"rotate done");
+//    NSLog(@"\nframe = %@\nbounds = %@", NSStringFromCGRect(self.testView.frame), NSStringFromCGRect(self.testView.bounds));
+    
+//    NSLog(@"\nframe = %@\nbounds = %@", NSStringFromCGRect(self.view.frame),
+//          NSStringFromCGRect(self.view.frame));
+    
+    CGPoint origin = CGPointZero;
+    
+    
+    
+    origin = [self.view convertPoint:origin toView:self.view.window];
+    
+    NSLog(@"origin = %@", NSStringFromCGPoint(origin));
+    
+    CGRect r = self.view.bounds;
+    r.origin.y = 0;
+    r.origin.x = CGRectGetWidth(r) - 100;
+    r.size = CGSizeMake(100, 100);
+    
+    UIView* v = [[UIView alloc] initWithFrame:r];
+    v.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.8];
+    [self.view addSubview:v];
+    
     
 }
 
